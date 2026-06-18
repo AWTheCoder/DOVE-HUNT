@@ -11,7 +11,6 @@ WIDTH, HEIGHT = 900, 700
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Shoot the Dove")
 
-"hello"
 # Audio Setup
 # 1. Loading the sound effects
 shoot_sound = pygame.mixer.Sound("sounds/gun_shot.mp3") # loads a sound effect into memory
