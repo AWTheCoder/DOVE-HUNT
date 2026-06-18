@@ -1,4 +1,3 @@
-#comment
 import pygame
 import sys # lets your program interact with the Python system
 import random
@@ -71,6 +70,7 @@ dove_speed = 4
 doves = []
 spawn_timer = 0
 spawn_delay = 2000
+HITBOX_SIZE = 30
 
 # Hit Effects
 hit_effects = []
@@ -99,16 +99,19 @@ def check_shot(target_x, target_y, player_name):
 
     for dove in doves:
 
-        # Changed dove.get_rect to DOVE.get_rect
-        dove_rect = DOVE.get_rect(topleft=(dove["x"], dove["y"]))
+        # Smaller hitbox centred inside the 90x90 dove image
+        dove_rect = pygame.Rect(
+            dove["x"] + (90 - HITBOX_SIZE) // 2,
+            dove["y"] + (90 - HITBOX_SIZE) // 2,
+            HITBOX_SIZE,
+            HITBOX_SIZE
+        )
 
         if dove_rect.collidepoint(target_x, target_y):
-
             if not dove["hit"]:
                 dove["hit"] = True
                 dove["hit_time"] = pygame.time.get_ticks()
 
-                #add score to the correct player
                 if player_name == "Player 1":
                     player1_score += 1
                 elif player_name == "Player 2":
@@ -125,53 +128,40 @@ def check_shot(target_x, target_y, player_name):
 
                 print(f"{player_name} Hit a Dove!")
                 hit = True
-
             break
-
 
 # Main Game Loop
 while running:
-
     # Event Handling
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             running = False
-
         if game_over:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     player1_score = 0
                     player2_score = 0
-
                     game_over = False
                     show_instructions = True
-
                     start_time = None
-
         # Start game with ENTER
         if show_instructions:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     show_instructions = False
-
                     # Start timer ONLY when game begins
                     start_time = pygame.time.get_ticks()
-
         # Shooting inputs from the second loop
         if not show_instructions:
             if event.type == pygame.KEYDOWN:
-
                 # Player 1 shoots with SPACE
                 if event.key == pygame.K_SPACE:
                     pygame.mixer.Sound.play(shoot_sound)
                     check_shot(p1_x, p1_y, "Player 1")
-
                 # Player 2 shoots with ENTER
                 if event.key == pygame.K_RETURN:
                     pygame.mixer.Sound.play(shoot_sound)
                     check_shot(p2_x, p2_y, "Player 2")
-
     # Continuous keyboard input
     keys = pygame.key.get_pressed()
 
@@ -205,41 +195,31 @@ while running:
     # Spawn new doves
     if not show_instructions:
         current_time = pygame.time.get_ticks()
-
         if current_time - spawn_timer > spawn_delay:
-
             for i in range(4):  # Spawn 4 doves each time
-
                 doves.append({
                     "x": random.randint(50, WIDTH - 110),
                     "y": HEIGHT + random.randint(0, 150),
                     "hit": False,
                     "hit_time": 0
                 })
-
             spawn_timer = current_time
 
     # Move doves
     for dove in doves[:]:
-
         if not dove["hit"]:
             dove["y"] -= dove_speed
-
             if dove["y"] + 60 < 0:
                 doves.remove(dove)
-
         else:
             dove["y"] += FALL_SPEED
-
             if dove["y"] > HEIGHT:
                 doves.remove(dove)
 
     # UPDATE HIT EFFECTS
     for effect in hit_effects[:]:
-
         effect["radius"] += 2
         effect["life"] -= 1
-
         if effect["life"] <= 0:
             hit_effects.remove(effect)
 
@@ -248,10 +228,8 @@ while running:
 
     # Draw backdrop
     SCREEN.blit(BACKDROP, (0, 0))
-
     # Instructions Screen
     if show_instructions:
-
         title = title_font.render(
             "DOVE HUNT",
             True,
@@ -284,7 +262,6 @@ while running:
         SCREEN.blit(p1, (220, 280))
         SCREEN.blit(p2, (220, 330))
         SCREEN.blit(start, (250, 420))
-
     else:
 
         # Timer Default Value
@@ -292,19 +269,15 @@ while running:
 
         # Timer
         if not game_over:
-
             # Only compute time if game has started and start_time exists
             if start_time is not None:
                 elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
-
                 time_left = max(0,game_time - elapsed_time)
-
                 if time_left <= 0:
                     game_over = True
             # Stop dove spawning here
             # Stop player shooting here
             # Freeze scores here
-
         else:
             time_left = 0
 
@@ -324,10 +297,8 @@ while running:
         ###### Timer & Systems (A) ######
         if time_left > 10:
             timer_colour = (255, 255, 255)  # white
-
         elif time_left > 5:
             timer_colour = (255, 255, 0)  # yellow
-
         else:
             timer_colour = (255, 0, 0)  # red
 
@@ -356,13 +327,10 @@ while running:
         ###### Timer & Systems (A) ######
         # Game Over Screen
         if game_over:
-
             if player1_score > player2_score:
                 winner = "Player 1 Wins!"
-
             elif player2_score > player1_score:
                 winner = "Player 2 Wins!"
-
             else:
                 winner = "Draw!"
 
@@ -428,35 +396,25 @@ while running:
     # Draw Doves
     if not show_instructions:
         for dove in doves:
-
             if dove["hit"]:
-
                 elapsed = pygame.time.get_ticks() - dove["hit_time"]
-
                 if elapsed < FLASH_TIME:
-
                     flash = DOVE.copy()
-
                     red_overlay = pygame.Surface(
                         flash.get_size(),
                         pygame.SRCALPHA
                     )
-
                     red_overlay.fill((255, 0, 0, 120))
-
                     flash.blit(red_overlay, (0, 0))
-
                     SCREEN.blit(
                         flash,
                         (dove["x"], dove["y"])
                     )
-
                 else:
                     SCREEN.blit(
                         DOVE,
                         (dove["x"], dove["y"])
                     )
-
             else:
                 SCREEN.blit(
                     DOVE,
