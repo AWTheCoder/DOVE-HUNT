@@ -42,11 +42,11 @@ except pygame.error:
 
 clock = pygame.time.Clock()
 
-###### UI & Scoreboard (Z) ######
+###### UI & Scoreboard (Z) ######4
 # Scoreboard Variables
 player1_score = 0
 player2_score = 0
-# hello this is a test
+
 # Timer Variables
 game_time = 60
 start_time = None
