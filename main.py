@@ -41,7 +41,7 @@ except pygame.error:
     print("Couldn't find dove.png, using a white square placeholder.")
 
 clock = pygame.time.Clock()
-#test
+
 ###### UI & Scoreboard (Z) ######4
 # Scoreboard Variables
 player1_score = 0
