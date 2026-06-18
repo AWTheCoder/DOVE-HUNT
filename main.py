@@ -1,5 +1,5 @@
 import pygame
-import sys
+import sys # lets your program interact with the Python system
 import random
 
 ####### Timer & Systems (A) ######
@@ -8,14 +8,13 @@ pygame.mixer.init()  # turns on pygame's sound system
 
 # Window setup
 WIDTH, HEIGHT = 900, 700
-SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT)) # create game window
 pygame.display.set_caption("Shoot the Dove")
 
 # Audio Setup
 # 1. Loading the sound effects
 shoot_sound = pygame.mixer.Sound("sounds/gun_shot.mp3") # loads a sound effect into memory
 hit_sound = pygame.mixer.Sound("sounds/bird_shot.wav")
-miss_sound = pygame.mixer.Sound("sounds/miss_shot.wav")
 
 # 2. Loading the background music
 pygame.mixer.music.load("sounds/rain_loop.wav")
