@@ -1,3 +1,4 @@
+#comment
 import pygame
 import sys # lets your program interact with the Python system
 import random
