@@ -9,7 +9,7 @@ pygame.mixer.init()  # turns on pygame's sound system
 # Window setup
 WIDTH, HEIGHT = 900, 700
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT)) # create game window
-pygame.display.set_caption("Shoot the Dove")
+pygame.display.set_caption("Dove Hunt")
 
 # Audio Setup
 # 1. Loading the sound effects
@@ -34,12 +34,12 @@ try:
     dove_original = pygame.image.load("dove.png")  # Assumes you have a dove.png image
     DOVE = pygame.transform.scale(dove_original, (90, 90))  # Scales it down so it isn't massive
 except pygame.error:
-    # Fallback: Creates a simple white placeholder square if the image is missing
-    DOVE = pygame.Surface((60, 60), pygame.SRCALPHA)
+    # Fallback: Creates a white square if the dove is missing
+    DOVE = pygame.Surface((60, 60), pygame.SRCALPHA) # backup image
     DOVE.fill((255, 255, 255))
     print("Couldn't find dove.png, using a white square placeholder.")
 
-clock = pygame.time.Clock()
+clock = pygame.time.Clock() # helps control how fast your game runs
 
 ###### UI & Scoreboard (Z) ######4
 # Scoreboard Variables
@@ -48,7 +48,7 @@ player2_score = 0
 
 # Timer Variables
 game_time = 60
-start_time = None
+start_time = None # no value assigned yet
 
 # Fonts
 title_font = pygame.font.SysFont("Arial", 50, bold=True)
@@ -527,7 +527,7 @@ while running:
     ###### Timer & Systems (A) ######
     # Update display
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(60) # run game at max of 60 FPS (frames per sec)
 
 pygame.quit()
 sys.exit()
