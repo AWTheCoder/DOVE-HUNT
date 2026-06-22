@@ -35,7 +35,7 @@ try:
     DOVE = pygame.transform.scale(dove_original, (90, 90))  # Scales it down so it isn't massive
 except pygame.error:
     # Fallback: Creates a white square if the dove is missing
-    DOVE = pygame.Surface((60, 60), pygame.SRCALPHA) # backup image
+    DOVE = pygame.Surface((60, 60), pygame.SRCALPHA) # create backup image with transparent background
     DOVE.fill((255, 255, 255))
     print("Couldn't find dove.png, using a white square placeholder.")
 
@@ -54,7 +54,7 @@ start_time = None # no value assigned yet
 title_font = pygame.font.SysFont("Arial", 50, bold=True)
 
 # Timer font
-font = pygame.font.SysFont(None, 50)
+font = pygame.font.SysFont("Arial", 50)
 
 # Smaller UI font
 ui_font = pygame.font.SysFont("Arial", 32)
@@ -70,7 +70,7 @@ dove_speed = 4
 doves = []
 spawn_timer = 0
 spawn_delay = 2000
-HITBOX_SIZE = 30
+HITBOX_SIZE = 60
 
 # Hit Effects
 hit_effects = []
