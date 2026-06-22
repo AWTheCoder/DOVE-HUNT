@@ -110,13 +110,14 @@ def check_shot(target_x, target_y, player_name):
         if dove_rect.collidepoint(target_x, target_y):
             if not dove["hit"]:
                 dove["hit"] = True
-                dove["hit_time"] = pygame.time.get_ticks()
+                dove["hit_time"] = pygame.time.get_ticks() # return no. of millisecs since game started
 
                 if player_name == "Player 1":
                     player1_score += 1
                 elif player_name == "Player 2":
                     player2_score += 1
 
+                # Add a new hit effect to "hit_effects" list when a dove's hit
                 hit_effects.append({
                     "x": target_x,
                     "y": target_y,
