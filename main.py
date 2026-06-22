@@ -15,6 +15,7 @@ pygame.display.set_caption("Dove Hunt")
 # 1. Loading the sound effects
 shoot_sound = pygame.mixer.Sound("sounds/gun_shot.mp3") # loads a sound effect into memory
 hit_sound = pygame.mixer.Sound("sounds/bird_shot.wav")
+beep_sound = pygame.mixer.Sound("sounds/beep_sound.wav")
 
 # 2. Loading the background music
 pygame.mixer.music.load("sounds/rain_loop.wav")
@@ -49,6 +50,7 @@ player2_score = 0
 # Timer Variables
 game_time = 60
 start_time = None # no value assigned yet
+last_beep_sound = -1
 
 # Fonts
 title_font = pygame.font.SysFont("Arial", 50, bold=True)
@@ -145,6 +147,7 @@ while running:
                     game_over = False
                     show_instructions = True
                     start_time = None
+                    last_beep_sound = -1
         # Start game with ENTER
         if show_instructions:
             if event.type == pygame.KEYDOWN:
@@ -274,6 +277,13 @@ while running:
             if start_time is not None:
                 elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
                 time_left = max(0,game_time - elapsed_time)
+
+                # beep once every second during last 10 seconds
+                if 0 < time_left <= 10:
+                    if time_left != last_beep_sound:
+                        beep_sound.play()
+                        last_beep_sound = time_left
+
                 if time_left <= 0:
                     game_over = True
             # Stop dove spawning here
