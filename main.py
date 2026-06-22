@@ -117,15 +117,18 @@ def check_shot(target_x, target_y, player_name):
 
                 if player_name == "Player 1":
                     player1_score += 1
+                    txt_color = p1_color
                 elif player_name == "Player 2":
                     player2_score += 1
+                    txt_color = p2_color
 
                 # Add a new hit effect to "hit_effects" list when a dove's hit
                 hit_effects.append({
                     "x": target_x,
                     "y": target_y,
                     "radius": 5,
-                    "life": 15
+                    "life": 15,
+                    "color": txt_color
                 })
 
                 pygame.mixer.Sound.play(hit_sound)
@@ -463,6 +466,13 @@ while running:
             effect["radius"],
             2
         )
+
+        # --- 3. CREATE AND DRAW THE "+1" TEXT ---
+        # Render the "+1" string into an image using the player's stored color
+        plus_one_text = ui_font.render("+1", True, effect["color"])
+
+        # Draw the text 20 pixels to the right and 20 pixels up from the hit location
+        SCREEN.blit(plus_one_text, (effect["x"] + 20, effect["y"] - 20))
 
     # Draw Player 1 Crosshair (Red)
     if not show_instructions:
