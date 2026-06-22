@@ -156,7 +156,7 @@ while running:
                     # Start timer ONLY when game begins
                     start_time = pygame.time.get_ticks()
         # Shooting inputs from the second loop
-        if not show_instructions:
+        if not show_instructions and not game_over:
             if event.type == pygame.KEYDOWN:
                 # Player 1 shoots with SPACE
                 if event.key == pygame.K_SPACE:
@@ -169,25 +169,26 @@ while running:
     # Continuous keyboard input
     keys = pygame.key.get_pressed()
 
-    # Player 1 Movement (WASD)
-    if keys[pygame.K_a]:
-        p1_x -= crosshair_speed
-    if keys[pygame.K_d]:
-        p1_x += crosshair_speed
-    if keys[pygame.K_w]:
-        p1_y -= crosshair_speed
-    if keys[pygame.K_s]:
-        p1_y += crosshair_speed
+    if not game_over:
+        # Player 1 Movement (WASD)
+        if keys[pygame.K_a]:
+            p1_x -= crosshair_speed
+        if keys[pygame.K_d]:
+            p1_x += crosshair_speed
+        if keys[pygame.K_w]:
+            p1_y -= crosshair_speed
+        if keys[pygame.K_s]:
+            p1_y += crosshair_speed
 
-    # Player 2 Movement (Arrow Keys)
-    if keys[pygame.K_LEFT]:
-        p2_x -= crosshair_speed
-    if keys[pygame.K_RIGHT]:
-        p2_x += crosshair_speed
-    if keys[pygame.K_UP]:
-        p2_y -= crosshair_speed
-    if keys[pygame.K_DOWN]:
-        p2_y += crosshair_speed
+        # Player 2 Movement (Arrow Keys)
+        if keys[pygame.K_LEFT]:
+            p2_x -= crosshair_speed
+        if keys[pygame.K_RIGHT]:
+            p2_x += crosshair_speed
+        if keys[pygame.K_UP]:
+            p2_y -= crosshair_speed
+        if keys[pygame.K_DOWN]:
+            p2_y += crosshair_speed
 
     # Keep crosshairs on screen
     p1_x = max(0, min(p1_x, WIDTH))
@@ -197,7 +198,7 @@ while running:
     p2_y = max(0, min(p2_y, HEIGHT))
 
     # Spawn new doves
-    if not show_instructions:
+    if not show_instructions and not game_over:
         current_time = pygame.time.get_ticks()
         if current_time - spawn_timer > spawn_delay:
             for i in range(4):  # Spawn 4 doves each time
@@ -278,6 +279,7 @@ while running:
                 elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
                 time_left = max(0,game_time - elapsed_time)
 
+                ###### Timer & Systems (A) ######
                 # beep once every second during last 10 seconds
                 if 0 < time_left <= 10:
                     if time_left != last_beep_sound:
@@ -286,12 +288,14 @@ while running:
 
                 if time_left <= 0:
                     game_over = True
+                    doves.clear()
             # Stop dove spawning here
             # Stop player shooting here
             # Freeze scores here
         else:
             time_left = 0
 
+        ###### UI & Scoreboard (Z) ######
         # Scoreboard Display
         p1_text = ui_font.render(
             f"Player 1: {player1_score}",

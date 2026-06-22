@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="323699dc-bad5-49ac-ab7e-b9fd330f7fe0" name="Changes" comment="GAME DRAFT 1.0">
+    <list default="true" id="323699dc-bad5-49ac-ab7e-b9fd330f7fe0" name="Changes" comment="added beeping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -92,7 +92,7 @@
       <workItem from="1781788218437" duration="4887000" />
       <workItem from="1782116014310" duration="5995000" />
       <workItem from="1782123596541" duration="815000" />
-      <workItem from="1782125083901" duration="1091000" />
+      <workItem from="1782125083901" duration="1774000" />
     </task>
     <task id="LOCAL-00001" summary="GAME DRAFT 1">
       <option name="closed" value="true" />
@@ -230,7 +230,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782121530395</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added beeping">
+      <option name="closed" value="true" />
+      <created>1782126523957</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1782126523957</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added beeping">
+      <option name="closed" value="true" />
+      <created>1782126582971</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1782126582971</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,10 +256,11 @@
     <MESSAGE value="GAME DRAFT 1" />
     <MESSAGE value="GAME DRAFT 2" />
     <MESSAGE value="GAME DRAFT 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="GAME DRAFT 1.0" />
+    <MESSAGE value="added beeping" />
+    <option name="LAST_COMMIT_MESSAGE" value="added beeping" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LTU_Project___DOVE_HUNT$main.coverage" NAME="main Coverage Results" MODIFIED="1781780779322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1782123617557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1782126180844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
