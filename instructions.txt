@@ -1,0 +1,26 @@
+DOVE HUNT - Instructions
+
+Objective - Shoot more doves than your opponent before the timer runs out.
+
+Player 1 Controls:
+W - Move Up
+A - Move Left
+S - Move Down
+D - Move Right
+SPACE - Shoot
+
+Player 2 Controls:
+UP ARROW - Move Up
+LEFT ARROW - Move Left
+DOWN ARROW - Move Down
+RIGHT ARROW - Move Right
+ENTER - Shoot
+
+Game Features:
+- 60-second timer
+- Last 10 seconds warning beeps
+- Falling doves when hit
+- Score tracking
+- Leaderboard saving
+
+The player with the highest score when the timer reaches 0 wins.

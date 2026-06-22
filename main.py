@@ -65,6 +65,7 @@ ui_font = pygame.font.SysFont("Arial", 32)
 show_instructions = True
 game_over = False
 running = True
+score_saved = False
 
 ###### Game Logic (G+Y) ######
 # Dove Settings
@@ -135,6 +136,22 @@ def check_shot(target_x, target_y, player_name):
 
 # Main Game Loop
 while running:
+
+    def save_score():
+        if player1_score > player2_score:
+            winner = "Player 1"
+        elif player2_score > player1_score:
+            winner = "Player 2"
+        else:
+            winner = "Draw"
+
+        with open("leaderboard.txt", "a") as file:
+            file.write(
+                f"Player 1: {player1_score} |"
+                f"Player 2: {player2_score} |"
+                f"Winner: {winner}\n"
+            )
+
     # Event Handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -148,6 +165,7 @@ while running:
                     show_instructions = True
                     start_time = None
                     last_beep_sound = -1
+                    score_saved = False
         # Start game with ENTER
         if show_instructions:
             if event.type == pygame.KEYDOWN:
@@ -289,9 +307,9 @@ while running:
                 if time_left <= 0:
                     game_over = True
                     doves.clear()
-            # Stop dove spawning here
-            # Stop player shooting here
-            # Freeze scores here
+                    if not score_saved:
+                        save_score()
+                        score_saved = True
         else:
             time_left = 0
 
