@@ -57,6 +57,8 @@ last_beep_sound = -1
 # Fonts
 title_font = pygame.font.SysFont("Arial", 80, bold=True)
 
+#difficulty font
+difficulty_font = pygame.font.SysFont("Arial", 50, bold=True)
 # Timer font
 font = pygame.font.SysFont("Arial", 50)
 
@@ -186,6 +188,7 @@ while running:
 
         with open("leaderboard.txt", "a") as file:
             file.write(
+                f"{difficulty.upper()} |"
                 f"Player 1: {player1_score} |"
                 f"Player 2: {player2_score} |"
                 f"Winner: {winner}\n"
@@ -205,6 +208,7 @@ while running:
             running = False
 
         if event.type == pygame.KEYDOWN:
+
             if event.key == pygame.K_q:
                 p1_colour_index = (p1_colour_index + 1) % len(colour_options)
                 p1_color = colour_options[p1_colour_index][1]
@@ -212,6 +216,9 @@ while running:
             if event.key == pygame.K_p:
                 p2_colour_index = (p2_colour_index + 1) % len(colour_options)
                 p2_color = colour_options[p2_colour_index][1]
+
+            if event.key == pygame.K_n:
+                night_mode = not night_mode
 
             if event.key == pygame.K_m:
                 muted = not muted
@@ -463,31 +470,49 @@ while running:
             )
         )
         # Menu panel
-        panel = pygame.Surface((500, 560), pygame.SRCALPHA)
-        panel.fill((0, 0, 0, 100))
-        SCREEN.blit(panel, (180, 170))
+        panel = pygame.Rect(
+            170,
+            180,
+            560,
+            470
+        )
 
-        menu_x = WIDTH // 2 - 170
+        pygame.draw.rect(
+            SCREEN,
+            (20, 20, 20),
+            panel,
+            border_radius=20
+        )
 
-        SCREEN.blit(p1, (menu_x, 220))
-        SCREEN.blit(p2, (menu_x, 270))
+        pygame.draw.rect(
+            SCREEN,
+            (255, 215, 0),
+            panel,
+            3,
+            border_radius=20
+        )
 
-        SCREEN.blit(p1_help, (menu_x, 340))
-        SCREEN.blit(p2_help, (menu_x, 385))
+        menu_x = WIDTH // 2 - 150
 
-        SCREEN.blit(night_text, (menu_x, 430))
-        SCREEN.blit(mute_text, (menu_x, 475))
-        SCREEN.blit(leaderboard_text, (menu_x, 520))
+        SCREEN.blit(p1, (menu_x, 210))
+        SCREEN.blit(p2, (menu_x, 250))
 
-        SCREEN.blit(p1_colour_text, (menu_x, 565))
-        SCREEN.blit(p2_colour_text, (menu_x, 610))
+        SCREEN.blit(p1_help, (menu_x, 310))
+        SCREEN.blit(p2_help, (menu_x, 350))
 
-        SCREEN.blit(start, (menu_x, 655))
+        SCREEN.blit(night_text, (menu_x, 390))
+        SCREEN.blit(mute_text, (menu_x, 430))
+        SCREEN.blit(leaderboard_text, (menu_x, 470))
+
+        SCREEN.blit(p1_colour_text, (menu_x, 510))
+        SCREEN.blit(p2_colour_text, (menu_x, 550))
+
+        SCREEN.blit(start, (menu_x, 600))
 
     elif show_leaderboard:
         title = title_font.render("LEADERBOARD", True, (255, 215, 0))
 
-        SCREEN.blit(title, (WIDTH // 2 - title.get_width() // 2, 80))
+        SCREEN.blit(title, (WIDTH // 2 - title.get_width() // 2, 30))
 
         scores = load_scores()
 
@@ -495,9 +520,9 @@ while running:
 
         panel = pygame.Rect(
             100,
-            150,
+            120,
             700,
-            430
+            470
         )
 
         pygame.draw.rect(
@@ -518,7 +543,13 @@ while running:
         for score in scores[-10:]:
             score_text = ui_font.render(score.strip(), True, (255, 255, 255))
 
-            SCREEN.blit(score_text, (80, y))
+            SCREEN.blit(
+                score_text,
+                (
+                    WIDTH // 2 - score_text.get_width() // 2,
+                    y
+                )
+            )
 
             y += 40
 
@@ -528,17 +559,45 @@ while running:
             (255, 255, 0)
         )
 
+        back_panel = pygame.Rect(
+            WIDTH // 2 - 100,
+            HEIGHT - 90,
+            200,
+            50
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (20, 20, 20),
+            back_panel,
+            border_radius=10
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (255, 215, 0),
+            back_panel,
+            2,
+            border_radius=10
+        )
+
         SCREEN.blit(
             back_text,
             (
                 WIDTH // 2 - back_text.get_width() // 2,
-                HEIGHT - 80
+                HEIGHT - 78
             )
         )
 
     # Difficulty Screen Display Choice
     elif show_difficulty_menu:
-        title = title_font.render(
+        difficulty_title_font = pygame.font.SysFont(
+            "Arial",
+            50,
+            bold=True
+        )
+
+        title = difficulty_title_font.render(
             "SELECT DIFFICULTY",
             True,
             (255, 255, 255)
@@ -586,7 +645,7 @@ while running:
 
         SCREEN.blit(
             title,
-            (WIDTH // 2 - title.get_width() // 2, 180)
+            (WIDTH // 2 - title.get_width() // 2, 170)
         )
 
         SCREEN.blit(easy,(WIDTH // 2 - easy.get_width() // 2, 280))
@@ -823,7 +882,7 @@ while running:
 
     ###### Game Logic (G+Y) ######
     # Draw Doves
-    if not show_instructions and not show_difficulty_menu and not show_leaderboard:
+    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over:
         for dove in doves:
             if dove["hit"]:
                 elapsed = pygame.time.get_ticks() - dove["hit_time"]
@@ -868,7 +927,7 @@ while running:
         SCREEN.blit(plus_one_text, (effect["x"] + 20, effect["y"] - 20))
 
     # Draw Player 1 Crosshair (Red)
-    if not show_instructions and not show_difficulty_menu and not show_leaderboard:
+    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over:
         pygame.draw.circle(
             SCREEN,
             p1_color,
@@ -894,7 +953,7 @@ while running:
         )
 
     # Draw Player 2 Crosshair (Blue)
-    if not show_instructions and not show_difficulty_menu and not show_leaderboard:
+    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over:
         pygame.draw.circle(
             SCREEN,
             p2_color,
