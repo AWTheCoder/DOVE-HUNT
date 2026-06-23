@@ -11,3 +11,8 @@ Player 1: 27 |Player 2: 0 |Winner: Player 1
 Player 1: 26 |Player 2: 0 |Winner: Player 1
 Player 1: 19 |Player 2: 0 |Winner: Player 1
 Player 1: 1 |Player 2: 1 |Winner: Draw
+Player 1: 11 |Player 2: 11 |Winner: Draw
+Player 1: 32 |Player 2: 0 |Winner: Player 1
+Player 1: 29 |Player 2: 0 |Winner: Player 1
+Player 1: 37 |Player 2: 0 |Winner: Player 1
+Player 1: 14 |Player 2: 0 |Winner: Player 1

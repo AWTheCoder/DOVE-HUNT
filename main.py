@@ -96,6 +96,7 @@ doves = []
 spawn_timer = 0
 spawn_delay = 2000
 HITBOX_SIZE = 60
+BAR_HEIGHT = 60
 
 # Hit Effects
 hit_effects = []
@@ -336,7 +337,9 @@ while running:
         for dove in doves[:]:
             if not dove["hit"]:
                 dove["y"] -= dove_speed
-                if dove["y"] + 60 < 0:
+
+                # Remove the dove before it reaches the scoreboard bar
+                if dove["y"] <= BAR_HEIGHT: # remove dove when whole body reaches bottom of bar
                     doves.remove(dove)
             else:
                 dove["y"] += FALL_SPEED
@@ -367,7 +370,7 @@ while running:
 
     # Instructions Screen
     if show_instructions:
-        title_y = 150 + int(
+        title_y = 90 + int(
             10 * math.sin(
                 pygame.time.get_ticks() / 500
             )
@@ -459,26 +462,26 @@ while running:
             )
         )
         # Menu panel
-        panel = pygame.Surface((500, 430), pygame.SRCALPHA)
+        panel = pygame.Surface((500, 560), pygame.SRCALPHA)
         panel.fill((0, 0, 0, 100))
-        SCREEN.blit(panel, (180, 250))
+        SCREEN.blit(panel, (180, 170))
 
-        menu_x = 240
+        menu_x = WIDTH // 2 - 170
 
-        SCREEN.blit(p1, (menu_x, 280))
-        SCREEN.blit(p2, (menu_x, 320))
+        SCREEN.blit(p1, (menu_x, 220))
+        SCREEN.blit(p2, (menu_x, 270))
 
-        SCREEN.blit(p1_help, (menu_x, 380))
-        SCREEN.blit(p2_help, (menu_x, 420))
+        SCREEN.blit(p1_help, (menu_x, 340))
+        SCREEN.blit(p2_help, (menu_x, 385))
 
-        SCREEN.blit(night_text, (menu_x, 460))
-        SCREEN.blit(mute_text, (menu_x, 500))
-        SCREEN.blit(leaderboard_text, (menu_x, 540))
+        SCREEN.blit(night_text, (menu_x, 430))
+        SCREEN.blit(mute_text, (menu_x, 475))
+        SCREEN.blit(leaderboard_text, (menu_x, 520))
 
-        SCREEN.blit(p1_colour_text, (menu_x, 560))
-        SCREEN.blit(p2_colour_text, (menu_x, 600))
+        SCREEN.blit(p1_colour_text, (menu_x, 565))
+        SCREEN.blit(p2_colour_text, (menu_x, 610))
 
-        SCREEN.blit(start, (menu_x, 650))
+        SCREEN.blit(start, (menu_x, 655))
 
     elif show_leaderboard:
         title = title_font.render("LEADERBOARD", True, (255, 215, 0))
@@ -488,6 +491,28 @@ while running:
         scores = load_scores()
 
         y = 180
+
+        panel = pygame.Rect(
+            100,
+            150,
+            700,
+            430
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (20, 20, 20),
+            panel,
+            border_radius=20
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (255, 215, 0),
+            panel,
+            3,
+            border_radius=20
+        )
 
         for score in scores[-10:]:
             score_text = ui_font.render(score.strip(), True, (255, 255, 255))
@@ -518,6 +543,28 @@ while running:
             (255, 255, 255)
         )
 
+        panel = pygame.Rect(
+            220,
+            140,
+            460,
+            380
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (20, 20, 20),
+            panel,
+            border_radius=20
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (255, 215, 0),
+            panel,
+            3,
+            border_radius=20
+        )
+
         easy = ui_font.render(
             "1 - EASY",
             True,
@@ -541,9 +588,11 @@ while running:
             (WIDTH // 2 - title.get_width() // 2, 180)
         )
 
-        SCREEN.blit(easy, (350, 300))
-        SCREEN.blit(medium, (350, 360))
-        SCREEN.blit(hard, (350, 420))
+        SCREEN.blit(easy,(WIDTH // 2 - easy.get_width() // 2, 280))
+
+        SCREEN.blit(medium,(WIDTH // 2 - medium.get_width() // 2, 350))
+
+        SCREEN.blit(hard,(WIDTH // 2 - hard.get_width() // 2, 420))
 
     else:
 
@@ -600,6 +649,28 @@ while running:
             f"Time: {time_left}",
             True,
             timer_colour
+        )
+
+        hud = pygame.Rect(
+            10,
+            10,
+            WIDTH - 20,
+            70
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (0, 0, 0),
+            hud,
+            border_radius=10
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (255, 215, 0),
+            hud,
+            2,
+            border_radius=10
         )
 
         # Player 1 Score
