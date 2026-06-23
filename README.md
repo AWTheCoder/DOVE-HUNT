@@ -38,11 +38,11 @@ Python & Pygame
 - P - change crosshair colour
 
 # Additional Controls
-## N - toggle night mode
-## M - mute/unmute audio
-## L - open leaderboard
-## ESC - return from leaderboard
-## R - restart game (after Game Over)
+ N - toggle night mode
+ M - mute/unmute audio
+ L - open leaderboard
+ ESC - return from leaderboard
+ R - restart game (after Game Over)
 
 # Difficulty Levels
 # Easy
@@ -57,33 +57,32 @@ Spawn Delay = 800ms
 
 
 # Features
-## 2-player gameplay
-## Difficulty Modes Selection Menu
-## Animated main menu
-## Dove spawning systems
-## Dove hit detection
-## Dove falling animation when shot
-## Hit flash effect
-## "+1" score pop-up effect
-## Crosshair colour selection
-## Night Mode
-## Background music
-## Sound Effects
-## Mute/Unmute Toggle Option 
-## 60-second game timer
-## Last 10-seconds warning beeps
-## Leaderboard saving/viewing system (.txt file)
-## Improved GAME OVER screen
-## Winner Detection
-## Automatic Score Saving
+- 2-player gameplay
+- Difficulty Modes Selection Menu
+- Animated main menu
+- Dove spawning systems
+- Dove hit detection
+- Dove falling animation when shot
+- Hit flash effect
+- "+1" score pop-up effect
+- Crosshair colour selection
+- Night Mode
+- Background music
+- Sound Effects
+- Mute/Unmute Toggle Option 
+- 60-second game timer
+- Last 10-seconds warning beeps
+- Leaderboard saving/viewing system (.txt file)
+- Improved GAME OVER screen
+- Winner Detection
+- Automatic Score Saving
+- Leaderboard System
 
-# Leaderboard System
 At the end of the game, the scores are saved to:
 leaderboard.txt
 
 The file records Player 1 and Player 2 scores, and the winner
 
-#
 # Team Roles
 # Timer & Systems 
 
