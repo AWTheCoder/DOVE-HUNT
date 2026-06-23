@@ -3,7 +3,7 @@ import sys  # lets your program interact with the Python system
 import random
 import math
 
-####### Timer & Systems (A) ######
+######## Timer & Systems (A) ######
 pygame.init()
 pygame.mixer.init()  # turns on pygame's sound system
 
