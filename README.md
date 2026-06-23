@@ -46,14 +46,14 @@ Python & Pygame
 
 # Difficulty Levels
 # Easy
-Dove Speed = 4
-Spawn Delay = 2000ms
+- Dove Speed = 4
+- Spawn Delay = 2000ms
 # Medium
-Dove Speed = 7
-Spawn Delay = 1300ms
+- Dove Speed = 7
+- Spawn Delay = 1300ms
 # Hard
-Dove Speed = 10
-Spawn Delay = 800ms
+- Dove Speed = 10
+- Spawn Delay = 800ms
 
 
 # Features
