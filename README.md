@@ -1,13 +1,13 @@
 # DOVE HUNT #
 
-# Overview
+## Overview
 Dove Hunt is a 2-player shooting game which was created using Python and Pygame. 
 Players compete to shoot as many doves as possible before the timer runs out
 
-# Technologies Used
+## Technologies Used
 Python & Pygame
 
-# How to run the game
+## How to run the game
 1. Make sure that Python & Pygame are installed
 2. Place all required files in the project folder:
    - dove.png
@@ -20,8 +20,8 @@ Python & Pygame
 4. Read the instructions and press ENTER to start the game
 5. Select a difficulty level (Easy, Medium or Hard)
 
-# Controls
-# Player 1
+## Controls
+### Player 1
 - W - move up
 - A - move left
 - S - move down
@@ -29,7 +29,7 @@ Python & Pygame
 - SPACE - shoot
 - Q - change crosshair colour
 
-# Player 2
+### Player 2
 - Up Arrow - move up
 - Left Arrow - move left
 - Down Arrow - move down
@@ -37,26 +37,26 @@ Python & Pygame
 - ENTER - shoot
 - P - change crosshair colour
 
-# Additional Controls
+### Additional Controls
  N - toggle night mode
  M - mute/unmute audio
  L - open leaderboard
  ESC - return from leaderboard
  R - restart game (after Game Over)
 
-# Difficulty Levels
-# Easy
+## Difficulty Levels
+### Easy
 - Dove Speed = 4
 - Spawn Delay = 2000ms
-# Medium
+### Medium
 - Dove Speed = 7
 - Spawn Delay = 1300ms
-# Hard
+### Hard
 - Dove Speed = 10
 - Spawn Delay = 800ms
 
 
-# Features
+## Features
 - 2-player gameplay
 - Difficulty Modes Selection Menu
 - Animated main menu
@@ -83,9 +83,9 @@ leaderboard.txt
 
 The file records Player 1 and Player 2 scores, and the winner
 
-# Team Roles
-# Timer & Systems 
+## Team Roles
+### Timer & Systems 
 
-# Game Logic
+### Game Logic
 
-# UI & Scoreboard
+### UI & Scoreboard
