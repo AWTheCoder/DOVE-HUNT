@@ -22,20 +22,20 @@ Python & Pygame
 
 # Controls
 # Player 1
-## W - move up ##
-## A - move left
-## S - move down
-## D - move right
-## SPACE - shoot
-## Q - change crosshair colour
+- W - move up
+- A - move left
+- S - move down
+- D - move right
+- SPACE - shoot
+- Q - change crosshair colour
 
 # Player 2
-## Up Arrow - move up
-## Left Arrow - move left
-## Down Arrow - move down
-## Right Arrow - move right
-## ENTER - shoot
-## P - change crosshair colour
+- Up Arrow - move up
+- Left Arrow - move left
+- Down Arrow - move down
+- Right Arrow - move right
+- ENTER - shoot
+- P - change crosshair colour
 
 # Additional Controls
 ## N - toggle night mode
