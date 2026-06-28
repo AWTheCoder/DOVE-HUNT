@@ -103,6 +103,7 @@ The player with the highest score at the end of the game wins
 - README.md file
 - Instructions.txt file
 
+## 
 At the end of the each game, the scores are automatically saved to "leaderboard.txt"
 The leaderboard records:
 1. Selected Difficulty mode
