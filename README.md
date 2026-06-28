@@ -3,11 +3,12 @@
 ## Overview
 Dove Hunt is a 2-player shooting game which was created using Python and Pygame. 
 Players compete to shoot as many doves as possible before the timer runs out
+The player with the highest score at the end of the game wins
 
 ## Technologies Used
 - Python 3
 - Pygame
-- Github
+- GitHub
 - OBS Studio
 - Clipchamp (for editing audio)
 
@@ -20,6 +21,8 @@ Players compete to shoot as many doves as possible before the timer runs out
 - sounds/bird_shot.wav
 - sounds/beep_sound.wav
 - sounds/rain_loop.wav
+- README.md
+- instructions.txt
 
 ## How to run the game
 1. Make sure that Python & Pygame are installed
@@ -30,7 +33,7 @@ Players compete to shoot as many doves as possible before the timer runs out
    - sounds/bird_shot.wav
    - sounds/beep_sound.wav
    - sounds/rain_loop.wav
-3. Run the python file
+3. Run the python file (main.py)
 4. Read the instructions and press ENTER to start the game
 5. Select a difficulty level (Easy, Medium or Hard)
 
@@ -60,14 +63,14 @@ Players compete to shoot as many doves as possible before the timer runs out
 
 ## Difficulty Levels
 ### Easy
-- Dove Speed = 4
-- Spawn Delay = 2000ms
+- Dove Speed: 4
+- Spawn Delay: 2000 ms
 ### Medium
-- Dove Speed = 7
-- Spawn Delay = 1300ms
+- Dove Speed: 7
+- Spawn Delay: 1300 ms
 ### Hard
-- Dove Speed = 10
-- Spawn Delay = 800ms
+- Dove Speed: 10
+- Spawn Delay: 800 ms
 
 
 ## Features
@@ -86,28 +89,58 @@ Players compete to shoot as many doves as possible before the timer runs out
 - Mute/Unmute Toggle Option 
 - 60-second game timer
 - Last 10-seconds warning beeps
-- Leaderboard saving/viewing system (.txt file)
-- Improved GAME OVER screen
+- Leaderboard saving & viewing
+- Improved Game Over screen
 - Winner Detection
 - Random Dove Positioning
 - Timer colour changes (W -> Y -> R)
 - Difficulty-based dove speed and spawn rates
-- Restart Game Option
+- Restart Game 
 - Crosshair movement controls
 - HUD/Scoreboard & Timer Display
 
-## Documentation
+## Project Documentation
 - README.md file
 - Instructions.txt file
 
-At the end of the game, the scores are saved to:
-leaderboard.txt
-
-The file records Player 1 and Player 2 scores, and the winner
+At the end of the each game, the scores are automatically saved to "leaderboard.txt"
+The leaderboard records:
+1. Selected Difficulty mode
+2. Player 1 Score
+3. Player 2 Score
+4. Winner
 
 ## Team Roles
+### Timer & Systems
+- Project management
+- Timer system
+- Audio system
+- Leaderboard system
+- Game Over & restart systems
+- Documentation
+
+### Game Logic
+- Dove behaviour
+- Player controls
+- Crosshair system
+- Collision detection
+- Difficulty system
+- Hit effects
+
+### UI & Scoreboard
+- Menus
+- HUD
+- Scoreboard
+- Game Over screen
+- Visual design
+- Player display
+
+# For more details on team roles, see below
+
+
+## EXPANDED Team Roles
 ### Timer & Systems 
-- Project management and team coordination ​
+- Project management and team coordination​
 - Game timer (60 seconds)
 - Timer colour changes (white → yellow → red) ​
 - Last 10-second warning beep system ​
