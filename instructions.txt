@@ -1,6 +1,9 @@
 DOVE HUNT - Instructions
 
-Objective - Shoot more doves than your opponent before the timer runs out.
+About the Game
+Dove Hunt is a 2-player competitive shooting game where both players control crosshairs and compete to shoot as many doves as possible before the timer runs out. The player who shoots the most doves wins.
+
+Objective - Shoot more doves than your opponent before the 60-second timer runs out.
 
 Player 1 Controls:
 W - Move Up
@@ -17,10 +20,14 @@ RIGHT ARROW - Move Right
 ENTER - Shoot
 
 Game Features:
-- 60-second timer
-- Last 10 seconds warning beeps
+- 60-second countdown timer
+- Timer changes colour as time runs out
+- Warning beeps during the last 10 seconds
+- Difficulty mode selection (Easy, Medium or Hard)
 - Falling doves when hit
 - Score tracking
-- Leaderboard saving
+- Automatic leaderboard saving
+- Settings menu with different options (e.g. audio mute/unmute option, toggle night mode display)
 
-The player with the highest score when the timer reaches 0 wins.
+To Win the Game:
+The player with the highest score when the timer reaches 0 wins. The final scores, the winner of that game, and the selected difficulty mode, are saved to the leaderboard
