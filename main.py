@@ -186,6 +186,8 @@ while running:
         else:
             winner = "Draw"
 
+
+        ###### Timer & Systems (A) ######
         with open("leaderboard.txt", "a") as file:
             file.write(
                 f"{difficulty.upper()} |"
@@ -202,7 +204,7 @@ while running:
         except FileNotFoundError:
             return ["No scores yet."]
 
-
+    ###### Game Logic (G+Y) ######
     # Event Handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
