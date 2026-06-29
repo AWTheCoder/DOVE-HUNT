@@ -56,7 +56,7 @@ last_beep_sound = -1
 # Fonts
 title_font = pygame.font.SysFont("Arial", 80, bold=True)
 
-#difficulty font
+# difficulty font
 difficulty_font = pygame.font.SysFont("Arial", 50, bold=True)
 # Timer font
 font = pygame.font.SysFont("Arial", 50)
@@ -67,6 +67,7 @@ ui_font = pygame.font.SysFont("Arial", 28)
 # Game States
 show_instructions = True
 show_difficulty_menu = False
+show_controls = False
 game_over = False
 running = True
 score_saved = False
@@ -193,6 +194,7 @@ while running:
                 f"Winner: {winner}\n"
             )
 
+
     def load_scores():
         try:
             with open("leaderboard.txt", "r") as file:
@@ -233,7 +235,6 @@ while running:
                     hit_sound.set_volume(1.0)
                     beep_sound.set_volume(1.0)
 
-
         if game_over:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
@@ -257,10 +258,20 @@ while running:
                     show_leaderboard = True
                     show_instructions = False
 
+                if event.key == pygame.K_c:
+                    show_controls = True
+                    show_instructions = False
+
         if show_leaderboard:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     show_leaderboard = False
+                    show_instructions = True
+
+        if show_controls:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    show_controls = False
                     show_instructions = True
 
         # Difficulty choice inputs
@@ -346,7 +357,7 @@ while running:
                 dove["y"] -= dove_speed
 
                 # Remove the dove before it reaches the scoreboard bar
-                if dove["y"] <= BAR_HEIGHT: # remove dove when whole body reaches bottom of bar
+                if dove["y"] <= BAR_HEIGHT:  # remove dove when whole body reaches bottom of bar
                     doves.remove(dove)
             else:
                 dove["y"] += FALL_SPEED
@@ -377,7 +388,7 @@ while running:
 
     # Instructions Screen
     if show_instructions:
-        title_y = 90 + int(
+        title_y = 70 + int(
             10 * math.sin(
                 pygame.time.get_ticks() / 500
             )
@@ -450,7 +461,7 @@ while running:
         mute_text = ui_font.render(
             f"Press M to Mute: {'ON' if muted else 'OFF'}",
             True,
-            (255,255,255)
+            (255, 255, 255)
         )
 
         SCREEN.blit(
@@ -470,10 +481,10 @@ while running:
         )
         # Menu panel
         panel = pygame.Rect(
-            170,
-            180,
-            560,
-            470
+            220,
+            200,
+            460,
+            300
         )
 
         pygame.draw.rect(
@@ -493,20 +504,117 @@ while running:
 
         menu_x = WIDTH // 2 - 150
 
-        SCREEN.blit(p1, (menu_x, 210))
-        SCREEN.blit(p2, (menu_x, 250))
+        start_text = ui_font.render(
+            "[ENTER] Start Game",
+            True,
+            (255, 215, 0)
+        )
 
-        SCREEN.blit(p1_help, (menu_x, 310))
-        SCREEN.blit(p2_help, (menu_x, 350))
+        controls_text = ui_font.render(
+            "[C] Controls",
+            True,
+            (255, 255, 255)
+        )
 
-        SCREEN.blit(night_text, (menu_x, 390))
-        SCREEN.blit(mute_text, (menu_x, 430))
-        SCREEN.blit(leaderboard_text, (menu_x, 470))
+        leaderboard_text = ui_font.render(
+            "[L] Leaderboard",
+            True,
+            (255, 255, 255)
+        )
 
-        SCREEN.blit(p1_colour_text, (menu_x, 510))
-        SCREEN.blit(p2_colour_text, (menu_x, 550))
+        SCREEN.blit(
+            start,
+            (
+                WIDTH // 2 - start.get_width() // 2,
+                280
+            )
+        )
 
-        SCREEN.blit(start, (menu_x, 600))
+        SCREEN.blit(
+            controls_text,
+            (
+                WIDTH // 2 - controls_text.get_width() // 2,
+                340
+            )
+        )
+
+        SCREEN.blit(
+            leaderboard_text,
+            (
+                WIDTH // 2 - leaderboard_text.get_width() // 2,
+                400
+            )
+        )
+
+    elif show_controls:
+
+        title = title_font.render(
+            "CONTROLS",
+            True,
+            (255, 215, 0)
+        )
+
+        SCREEN.blit(
+            title,
+            (
+                WIDTH // 2 - title.get_width() // 2,
+                40
+            )
+        )
+
+        panel = pygame.Rect(
+            150,
+            120,
+            600,
+            450
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (20, 20, 20),
+            panel,
+            border_radius=20
+        )
+
+        pygame.draw.rect(
+            SCREEN,
+            (255, 215, 0),
+            panel,
+            3,
+            border_radius=20
+        )
+
+        controls = [
+            "Player 1: WASD + SPACE",
+            "Player 2: Arrow Keys + ENTER",
+            "",
+            "Q = Change P1 Colour",
+            "P = Change P2 Colour",
+            "",
+            "N = Toggle Night Mode",
+            "M = Mute Sound",
+            "",
+            "ESC = Back"
+        ]
+
+        y = 170
+
+        for line in controls:
+            text = ui_font.render(
+                line,
+                True,
+                (255, 255, 255)
+            )
+
+            SCREEN.blit(
+                text,
+                (
+                    WIDTH // 2 - text.get_width() // 2,
+                    y
+                )
+            )
+
+            y += 40
 
     elif show_leaderboard:
         title = title_font.render("LEADERBOARD", True, (255, 215, 0))
@@ -647,11 +755,11 @@ while running:
             (WIDTH // 2 - title.get_width() // 2, 170)
         )
 
-        SCREEN.blit(easy,(WIDTH // 2 - easy.get_width() // 2, 280))
+        SCREEN.blit(easy, (WIDTH // 2 - easy.get_width() // 2, 280))
 
-        SCREEN.blit(medium,(WIDTH // 2 - medium.get_width() // 2, 350))
+        SCREEN.blit(medium, (WIDTH // 2 - medium.get_width() // 2, 350))
 
-        SCREEN.blit(hard,(WIDTH // 2 - hard.get_width() // 2, 420))
+        SCREEN.blit(hard, (WIDTH // 2 - hard.get_width() // 2, 420))
 
     else:
 
@@ -710,11 +818,26 @@ while running:
             timer_colour
         )
 
+        if difficulty == "easy":
+            diff_colour = (0, 255, 0)
+
+        elif difficulty == "medium":
+            diff_colour = (255, 255, 0)
+
+        else:
+            diff_colour = (255, 50, 50)
+
+        difficulty_text = ui_font.render(
+            f"Mode: {difficulty.upper()}",
+            True,
+            diff_colour
+        )
+
         hud = pygame.Rect(
             10,
             10,
             WIDTH - 20,
-            70
+            100
         )
 
         pygame.draw.rect(
@@ -744,7 +867,15 @@ while running:
         # Timer
         SCREEN.blit(
             timer_text,
-            (WIDTH // 2 - timer_text.get_width() // 2, 20)
+            (WIDTH // 2 - timer_text.get_width() // 2, 8)
+        )
+
+        SCREEN.blit(
+            difficulty_text,
+            (
+                WIDTH // 2 - difficulty_text.get_width() // 2,
+                60
+            )
         )
 
         ###### Timer & Systems (A) ######
@@ -881,7 +1012,7 @@ while running:
 
     ###### Game Logic (G+Y) ######
     # Draw Doves
-    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over:
+    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over and not show_controls:
         for dove in doves:
             if dove["hit"]:
                 elapsed = pygame.time.get_ticks() - dove["hit_time"]
@@ -926,7 +1057,7 @@ while running:
         SCREEN.blit(plus_one_text, (effect["x"] + 20, effect["y"] - 20))
 
     # Draw Player 1 Crosshair (Red)
-    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over:
+    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over and not show_controls:
         pygame.draw.circle(
             SCREEN,
             p1_color,
@@ -952,7 +1083,7 @@ while running:
         )
 
     # Draw Player 2 Crosshair (Blue)
-    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over:
+    if not show_instructions and not show_difficulty_menu and not show_leaderboard and not game_over and not show_controls:
         pygame.draw.circle(
             SCREEN,
             p2_color,
